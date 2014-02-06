@@ -9,7 +9,7 @@
 The current time is {{ str_local_now }}
 
 {% for timezone in timezones %}
-{{ timezone.hour }}<br>
+{{ timezone.hour }}, {{ timezone.name }}<br>
 {% endfor %}
     </body>
 </html>
