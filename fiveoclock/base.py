@@ -13,7 +13,7 @@ import os
 
 from .secret_key import secret_key
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(__file__)
 
 
 # Quick-start development settings - unsuitable for production
@@ -88,7 +88,7 @@ STATIC_URL = '/static/'
 
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, "static", "templates"),
+    os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(BASE_DIR)))), "static", "templates"),
 )
 
 if DEBUG:

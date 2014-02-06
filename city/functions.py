@@ -10,7 +10,9 @@ def current_5oclock_timezone():
         a_time = get_local_now(timezone)
         if a_time.hour == 17:
             fiveoclock_timezone = timezone.name
+
     #fiveoclock_timezone = 'America/Los_Angeles'
+    
     return fiveoclock_timezone
 
 
