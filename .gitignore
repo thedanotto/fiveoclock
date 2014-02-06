@@ -6,3 +6,4 @@ live.py
 migrations
 secret_key.py
 db.s*
+static-only

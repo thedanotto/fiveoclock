@@ -13,7 +13,7 @@ import os
 
 from .secret_key import secret_key
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(__file__)
 
 
 # Quick-start development settings - unsuitable for production

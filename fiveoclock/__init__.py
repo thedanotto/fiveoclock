@@ -1,3 +1,4 @@
+'''
 from .base import *
 
 try:
@@ -9,3 +10,4 @@ try:
     from .live import *
 except Exception:
     pass
+'''
