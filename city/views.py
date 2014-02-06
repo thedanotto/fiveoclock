@@ -14,13 +14,13 @@ def home(request):
     city = City.objects.get(timezone=timezone)
     local_now = get_local_now(timezone)
     str_local_now = local_now.strftime('%I:%M:%S %p')
-
+    '''
     #WHAT TIME ZONIZZLES AM I MISSING??
     timezones = Timezone.objects.all()
     for timezone in timezones:
         a_time = get_local_now(timezone)
         timezone.hour = a_time.hour
-
+    '''
     return render_to_response('home.html', locals(), context_instance=RequestContext(request))
 
 
