@@ -2,3 +2,7 @@
 *.pot
 *.pyc
 local_settings.py
+live.py
+migrations
+secret_key.py
+db.s*
