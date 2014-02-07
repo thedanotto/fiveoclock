@@ -16,9 +16,12 @@ def yelp_values(full_url):
     for business in data['businesses']:
         biz_name = business['name']
         for deals in business['deals']:
-            deal = deals['what_you_get']
-            deal = deal.split(".")
-            deal = deal[0]
+            try:
+                deal = deals['what_you_get']
+                deal = deal.split(".")
+                deal = deal[0]
+            except:
+                deal = 'Fake out! No deal. They lied to us both!'
             locations.append([biz_name, deal])
     return locations
 
