@@ -21,6 +21,7 @@ def home(request):
         a_time = get_local_now(timezone)
         timezone.hour = a_time.hour
     '''
+    default_background_image_url = 'http://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Tango_-_Bastille_Day_2008_-_Juneau_Town_-_Milwaukee%2C_Wisconsin_-_USA.jpg/800px-Tango_-_Bastille_Day_2008_-_Juneau_Town_-_Milwaukee%2C_Wisconsin_-_USA.jpg'
     return render_to_response('home.html', locals(), context_instance=RequestContext(request))
 
 

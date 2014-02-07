@@ -5,13 +5,6 @@
   src: local('Lobster'), url(http://themes.googleusercontent.com/static/fonts/lobster/v6/NIaFDq6p6eLpSvtV2DTNDQLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
 }
 
-html {
-    background: url('http://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Tango_-_Bastille_Day_2008_-_Juneau_Town_-_Milwaukee%2C_Wisconsin_-_USA.jpg/800px-Tango_-_Bastille_Day_2008_-_Juneau_Town_-_Milwaukee%2C_Wisconsin_-_USA.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
 
 
 #page-wrap {
