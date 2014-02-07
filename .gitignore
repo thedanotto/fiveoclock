@@ -8,5 +8,9 @@ secret_key.py
 db.s*
 *.sqlite3
 static-only
+<<<<<<< HEAD
 settings.py
 
+=======
+fiveoclock/settings.py
+>>>>>>> 73e8f59082493e84109d9ec4dec4aa049d607a15
