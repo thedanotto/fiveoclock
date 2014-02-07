@@ -7,6 +7,7 @@ from pytz import timezone
 
 from functions import current_5oclock_timezone, get_local_now, get_utc_now
 from models import City, CityPicture, Timezone
+from yelp import yelp_request_url, yelp_values
 
 def home(request):
     five_oclock_tz = current_5oclock_timezone()
@@ -21,6 +22,14 @@ def home(request):
         a_time = get_local_now(timezone)
         timezone.hour = a_time.hour
     '''
+    if request.method == 'POST':
+        zip_code = request.POST.get('zip_code')
+        print zip_code
+        full_url = yelp_request_url(zip_code)
+        locations = yelp_values(full_url)
+        what_you_get = locations[0][1].split(".")
+
+    
     default_background_image_url = 'http://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Tango_-_Bastille_Day_2008_-_Juneau_Town_-_Milwaukee%2C_Wisconsin_-_USA.jpg/800px-Tango_-_Bastille_Day_2008_-_Juneau_Town_-_Milwaukee%2C_Wisconsin_-_USA.jpg'
     return render_to_response('home.html', locals(), context_instance=RequestContext(request))
 

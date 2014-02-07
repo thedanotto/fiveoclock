@@ -8,7 +8,7 @@ class Timezone(models.Model):
 
 class City(models.Model):
     city_name = models.CharField(max_length=50)
-    state = models.CharField(max_length=50)
+    state = models.CharField(max_length=50, blank=True, null=True)
     country = models.CharField(max_length=50)    
     timezone = models.ForeignKey(Timezone)
     

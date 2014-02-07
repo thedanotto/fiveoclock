@@ -37,12 +37,26 @@
     <hr>
     <div class="search">
         <h2 class="center" style="margin-bottom: 10px;">Find Drinking Deals</h2>
-        <div class="form-group">
-            <input class="form-control" placeholder="Zip Code" type="text" id="id_zip" name="zip" />
-        </div>
-        <input class="btn btn-default btn-md opac_one" type="submit" value="Find Deals!" />
+        <form action="." method="POST"> {% csrf_token %}
+            <div class="form-group">
+                <input class="form-control" placeholder="Zip Code" type="text" id="id_zip" name="zip_code" />
+            </div>
+            <input class="btn btn-default btn-md opac_one" type="submit" value="Find Deals!" />
+        </form>
     </div>
-
+    {% if request.POST %}
+    
+    <br>
+    
+    <div id="results">
+        <ul style="list-style: none;">
+            {% for location in locations %}
+            <li style="margin-bottom: 10px;">{% for ydd in location %}
+                {% if forloop.counter == 1 %}<h2 style="margin-bottom: 3px;">{{ ydd }}</h2>{% else %}Deal: {{ ydd }}{% endif %}{% endfor %}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
     </div>
 	
 </body>
