@@ -1,13 +1,32 @@
 <!DOCTYPE html>
-<html>
-    <head>
+    <html>
+<head>
+
         <title>It's 5 o'clock somewhere!</title>
         <meta name="description" content="It's always 5 o'clock somewhere. Find out where 5 o'clock is happening in the world right now!"
-    </head>
-    <body>
-       <h1>It is 5 o'clock in {{ city.city_name }}</h1>
-{{ city.city_name }}'s current time is {{ str_local_now }}!
-<br>Cheers!
 
-    </body>
+	<meta charset="UTF-8">
+	
+	<title>Full Page Background Image | Progressive</title>
+        <link href="/static/css/custom.css" rel="stylesheet">	
+</head>
+
+<body>
+
+    <div id="page-wrap">
+            <div class="header center">
+        <h1 class="">It's 5 o'clock in</h1>
+        <h2 class="" style="margin-top: 15px;">{{ city.city_name }}, {% if city.state %}{{ city.state }}, {{ city.country }}{% else %}{{ city.country }}{% endif %}</h2>
+    </div>
+    <hr>
+    <div class="search">
+        <h2 class="center" style="margin-bottom: 10px;">Find Drinking Deals</h2>
+        <div class="form-group">
+            <input class="form-control" placeholder="Zip Code" type="text" id="id_zip" name="zip" />
+        </div>
+        <input class="btn btn-default btn-md opac_one" type="submit" value="Find Deals!" />
+    </div>
+    </div>
+	
+</body>
 </html>

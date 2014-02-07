@@ -1,0 +1,35 @@
+
+        
+        {% block content %}
+
+
+                <div id="page-wrap">
+                    <div class="header center">
+                        <h1 class="">It's 5 o'clock in</h1>
+                        <hr>
+                        <h2 class="" style="margin-top: 15px;">{{ city.city_name }}, {% if city.state %}{{ city.state }}, {{ city.country }}{% else %}{{ city.country }}{% endif %}</h2>
+                    </div>
+                    <hr>
+                    <div class="time">
+                        <p>{{ city.city_name }}'s current time is {{ str_local_now }}!</p>
+                    </div>
+                    <hr>
+                    <div class="search">
+                        <h3>Find Drinking Deals</h3>
+                        <label style="font-size: 16px;">Zip: </label><input style="float: right; margin-right:35px; margin-bottom: 10px;" type="text" id="id_zip" name="zip" />
+                        <input class="btn btn-default btn-md opac_one" type="submit" value="Find Deals!" />
+                    </div>
+                </div>
+            
+        
+        <div class="navbar navbar-fixed-bottom">
+            <div class="container">
+                <h4 class="center">Denver, CO, USA</h4>
+            </div>
+        </div>
+
+               
+
+
+        {% endblock %}
+ 

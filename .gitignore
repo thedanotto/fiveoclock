@@ -6,4 +6,7 @@ live.py
 migrations
 secret_key.py
 db.s*
+*.sqlite3
 static-only
+settings.py
+

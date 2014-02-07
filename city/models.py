@@ -4,10 +4,12 @@ class Timezone(models.Model):
     name = models.CharField(max_length=50)
     tz_code = models.CharField(max_length=10)
     def __unicode__(self, ):
-        return self.name
+        return '%s, %s' %(self.name, self.tz_code)
 
 class City(models.Model):
     city_name = models.CharField(max_length=50)
+    state = models.CharField(max_length=50)
+    country = models.CharField(max_length=50)    
     timezone = models.ForeignKey(Timezone)
     
     def __unicode__(self, ):
