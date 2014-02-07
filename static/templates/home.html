@@ -9,7 +9,7 @@
         <style>
             html {
                 background: url({% if city.citypicture_set.all.count > 0 %}{% for item in city.citypicture_set.all %}{% if forloop.first %}
-    '{{ MEDIA_URL}}{{ item }}'{% endif %}{% endfor %}{% else %}'{{ default_background_image_url }}'{% endif %}) no-repeat center center fixed;
+    '{{ MEDIA_URL}}{{ item }}'{% endif %}{% endfor %}{% else %}'http://www.whereisit5oclock.com/media/cities/Anchorage-Alaska-2_2.jpg'{% endif %}) no-repeat center center fixed;
                 -webkit-background-size: cover;
                 -moz-background-size: cover;
                 -o-background-size: cover;
