@@ -36,10 +36,10 @@
     </div>
     <hr>
     <div class="search">
-        <h2 class="center" style="margin-bottom: 10px;">Find Drinking Deals</h2>
+        <h2 class="center" style="margin-bottom: 10px;">Find Drinking Deals in your city</h2>
         <form action="." method="POST"> {% csrf_token %}
             <div class="form-group">
-                <input class="form-control" placeholder="Zip Code" type="text" id="id_zip" name="zip_code" />
+                <input class="form-control" placeholder="Zip Code or City" type="text" id="id_zip" name="zip_code" />
             </div>
             <input class="btn btn-default btn-md opac_one" type="submit" value="Find Deals!" />
         </form>
@@ -54,6 +54,10 @@
             <li style="margin-bottom: 10px;">{% for ydd in location %}
                 {% if forloop.counter == 1 %}<h2 style="margin-bottom: 3px;">{{ ydd }}</h2>{% else %}Deal: {{ ydd }}{% endif %}{% endfor %}</li>
             {% endfor %}
+
+            {% if no_results == True %}
+            <li>I'm sorry, no deals in that city.</li>
+            {% endif %}
         </ul>
     </div>
     {% endif %}

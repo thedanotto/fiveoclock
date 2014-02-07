@@ -24,10 +24,13 @@ def home(request):
     '''
     if request.method == 'POST':
         zip_code = request.POST.get('zip_code')
-        print zip_code
         full_url = yelp_request_url(zip_code)
         locations = yelp_values(full_url)
-        what_you_get = locations[0][1].split(".")
+        if len(locations) == 0:
+            no_results = True
+        else:
+            no_results = False
+#        what_you_get = locations[0][1].split(".")
 
     
     default_background_image_url = 'http://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Tango_-_Bastille_Day_2008_-_Juneau_Town_-_Milwaukee%2C_Wisconsin_-_USA.jpg/800px-Tango_-_Bastille_Day_2008_-_Juneau_Town_-_Milwaukee%2C_Wisconsin_-_USA.jpg'
