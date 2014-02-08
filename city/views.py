@@ -5,7 +5,8 @@ from datetime import datetime, timedelta
 import pytz
 from pytz import timezone
 
-from functions import current_5oclock_timezone, get_local_now, get_utc_now
+
+from functions import current_5oclock_timezone, get_local_now, get_utc_now, find_city_zip, point_distance_calculator
 from models import City, CityPicture, Timezone
 from yelp import yelp_request_url, yelp_values
 
@@ -24,17 +25,18 @@ def home(request):
     '''
     if request.method == 'POST':
         zip_code = request.POST.get('zip_code')
+
         full_url = yelp_request_url(zip_code)
         try:
-            locations, businesses = yelp_values(full_url)
+            businesses = yelp_values(full_url)
             if len(locations) == 0:
                 no_results = True
             else:
                 no_results = False
         except:
             no_results = True
-        will_this_link = "href='www.yelp.com'"
-#        what_you_get = locations[0][1].split(".")
+        
+        
 
     
     default_background_image_url = 'http://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Tango_-_Bastille_Day_2008_-_Juneau_Town_-_Milwaukee%2C_Wisconsin_-_USA.jpg/800px-Tango_-_Bastille_Day_2008_-_Juneau_Town_-_Milwaukee%2C_Wisconsin_-_USA.jpg'

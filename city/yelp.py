@@ -37,12 +37,11 @@ def yelp_values(full_url):
             locations.append([biz_name, deal])
         rating_img_url = business['rating_img_url_small']
         address = business['location']['display_address'][0] + ", " + business['location']['city'] + ", " + business['location']['state_code']
-        print address
         businesses[biz_name] = [url, rating_img_url, deal, address]
     
 
     
-    return locations, businesses
+    return businesses
 
 def yelp_request_url(zip_code):
     from yelp_secrets import consumer_key, consumer_secret, token, token_secret
@@ -65,5 +64,4 @@ def yelp_request_url(zip_code):
     oauth_request.sign_request(oauth2.SignatureMethod_HMAC_SHA1(), consumer, token)
     
     signed_url = oauth_request.to_url()
-    print signed_url
     return signed_url
