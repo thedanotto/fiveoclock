@@ -14,7 +14,13 @@
                 -moz-background-size: cover;
                 -o-background-size: cover;
                 background-size: cover;
+
             }
+
+            
+
+
+            
         </style>
         <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -29,6 +35,7 @@
 </head>
 
 <body>
+    <div class="wrapper">
     <div id="page-wrap">
             <div class="header center">
         <h1 class="">It's 5 o'clock in</h1>
@@ -36,7 +43,7 @@
     </div>
     <hr>
     <div class="search">
-        <h2 class="center" style="margin-bottom: 10px;">Find Drinking Deals in your city</h2>
+        <h2 class="center" style="margin-bottom: 10px;">Find Food and Drink Deals in your city</h2>
         <form action="." method="POST"> {% csrf_token %}
             <div class="form-group">
                 <input class="form-control" placeholder="Zip Code or City" type="text" id="id_zip" name="zip_code" />
@@ -61,7 +68,10 @@
         </ul>
     </div>
     {% endif %}
+    <div class="push"></div>
     </div>
-	
+    <footer>
+        {% if city.citypicture_set.all.count > 0 %}<p>Picture of {{ city.city_name }}, {% if city.state %}{{ city.state }}, {{ city.country }}{% else %}{{ city.country }}{% endif %}</p>{% endif %}
+    </footer>
 </body>
 </html>
