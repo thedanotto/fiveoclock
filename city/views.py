@@ -26,14 +26,14 @@ def home(request):
         zip_code = request.POST.get('zip_code')
         full_url = yelp_request_url(zip_code)
         try:
-            locations = yelp_values(full_url)
+            locations, businesses = yelp_values(full_url)
             if len(locations) == 0:
                 no_results = True
             else:
                 no_results = False
         except:
             no_results = True
-
+        will_this_link = "href='www.yelp.com'"
 #        what_you_get = locations[0][1].split(".")
 
     

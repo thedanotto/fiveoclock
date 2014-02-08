@@ -48,17 +48,33 @@
         {% if request.POST %}
         
         <br>
-        
         <div id="results">
             <ul style="list-style: none;">
-                {% for location in locations %}
-                <li style="margin-bottom: 10px;">{% for ydd in location %}
-                    {% if forloop.counter == 1 %}<h2 style="margin-bottom: 3px;">{{ ydd }}</h2>{% else %}Deal: {{ ydd }}{% endif %}{% endfor %}</li>
+                {% for business, values in businesses.items %}
+                <li style="margin-bottom: 10px;">
+                <h2>
+                    <a href="{% for value in values %}{% if forloop.counter == 1 %}{{ value }}{% endif %}{% endfor %}">{{ business }}</a>
+                </h2>
+                {% for value in values %}
+                {% if forloop.counter > 1 %}
+                {% if forloop.counter = 2 %}
+                    <img src="{{ value }}" />
+                {% elif forloop.counter = 3 %}
+                    Deal: {{ value }}
+                {% else %}
+                    {{ value }}
+                {% endif %}
+                <br>
+                {% endif %}
                 {% endfor %}
-    
+                {% endfor %}
+                </li>
                 {% if no_results == True %}
                 <li>I'm sorry, no deals in that city.</li>
                 {% endif %}
+            </ul>
+        </div>
+
             </ul>
         </div>
         {% endif %}

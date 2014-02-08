@@ -35,6 +35,9 @@ footer {
     color: white;
 }
 
+a {
+  color: black;
+}
 
 body {
     overflow-x: hidden;

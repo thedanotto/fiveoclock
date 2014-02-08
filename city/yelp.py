@@ -10,20 +10,39 @@ def yelp_values(full_url):
     obj = urllib2.urlopen(full_url)
     
     data = json.load(obj)
-    
+    businesses = {}
     locations = []
 #            locations.append([abc['name'], abc['id']])
     for business in data['businesses']:
+        
         biz_name = business['name']
         for deals in business['deals']:
             try:
-                deal = deals['what_you_get']
-                deal = deal.split(".")
-                deal = deal[0]
+                the_title = deals['title']
+                length = len(the_title)
+                large = int(the_title[length-2:length]) + 0.0
+                title_index = the_title.index(" ")
+                small = int(the_title[1:title_index]) + 0.0
+                the_deal = abs((small - large) / large) * 100
+                str_deal = str(the_deal)
+                str_deal = str_deal[0:2]
+                deal = '%s%s off' %(str_deal, "%")
             except:
                 deal = 'Fake out! No deal. They lied to us both!'
+            
+            try:
+                url = business['url']
+            except:
+                pass
             locations.append([biz_name, deal])
-    return locations
+        rating_img_url = business['rating_img_url_small']
+        address = business['location']['display_address'][0] + ", " + business['location']['city'] + ", " + business['location']['state_code']
+        print address
+        businesses[biz_name] = [url, rating_img_url, deal, address]
+    
+
+    
+    return locations, businesses
 
 def yelp_request_url(zip_code):
     from yelp_secrets import consumer_key, consumer_secret, token, token_secret
@@ -46,5 +65,5 @@ def yelp_request_url(zip_code):
     oauth_request.sign_request(oauth2.SignatureMethod_HMAC_SHA1(), consumer, token)
     
     signed_url = oauth_request.to_url()
-
+    print signed_url
     return signed_url
