@@ -80,8 +80,10 @@
         {% endif %}
 
     </div>
+    {% if source_picture %}
     <footer>
         {% if city.citypicture_set.all.count > 0 %}<p>Picture of {{ city.city_name }}, {% if city.state %}{{ city.state }}, {{ city.country }}{% else %}{{ city.country }}{% endif %}</p>{% endif %}
     </footer>
+    {% endif %}
 </body>
 </html>

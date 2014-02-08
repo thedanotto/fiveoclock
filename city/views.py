@@ -23,6 +23,7 @@ def home(request):
         a_time = get_local_now(timezone)
         timezone.hour = a_time.hour
     '''
+    source_picture = True
     if request.method == 'POST':
         zip_code = request.POST.get('zip_code')
 
@@ -33,8 +34,10 @@ def home(request):
                 no_results = True
             else:
                 no_results = False
+                source_picture = False
         except:
             no_results = True
+        
         
         
 
