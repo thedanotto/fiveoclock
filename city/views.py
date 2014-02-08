@@ -25,6 +25,7 @@ def home(request):
     '''
     source_picture = True
     if request.method == 'POST':
+        source_picture = False
         zip_code = request.POST.get('zip_code')
 
         full_url = yelp_request_url(zip_code)
@@ -34,7 +35,7 @@ def home(request):
                 no_results = True
             else:
                 no_results = False
-                source_picture = False
+                
         except:
             no_results = True
         
