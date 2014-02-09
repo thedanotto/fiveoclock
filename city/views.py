@@ -15,6 +15,7 @@ def home(request):
     five_oclock_tz = current_5oclock_timezone()
     timezone = Timezone.objects.get(name=five_oclock_tz)
     cities = City.objects.filter(timezone=timezone)
+    print cities.count()
     if cities.count() == 1:
         city = City.objects.get(timezone=timezone)
     else:
@@ -23,7 +24,7 @@ def home(request):
             city_ids.append(city.id)
         total_cities = len(city_ids)
         city_id = city_ids[randrange(total_cities)]
-    city = City.objects.get(id=city_id)
+        city = City.objects.get(id=city_id)
     # city = find a way to pick the city 
     local_now = get_local_now(timezone)
     str_local_now = local_now.strftime('%I:%M:%S %p')
