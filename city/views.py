@@ -42,7 +42,7 @@ def home(request):
         full_url = yelp_request_url(zip_code)
         try:
             businesses = yelp_values(full_url)
-            if len(locations) == 0:
+            if len(businesses) == 0:
                 no_results = True
             else:
                 no_results = False
