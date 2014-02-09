@@ -2,6 +2,7 @@ from django.shortcuts import render, render_to_response, RequestContext
 from django.utils.timezone import utc
 
 from datetime import datetime, timedelta
+from random import randrange
 import pytz
 from pytz import timezone
 
@@ -13,7 +14,17 @@ from yelp import yelp_request_url, yelp_values
 def home(request):
     five_oclock_tz = current_5oclock_timezone()
     timezone = Timezone.objects.get(name=five_oclock_tz)
-    city = City.objects.get(timezone=timezone)
+    cities = City.objects.filter(timezone=timezone)
+    if cities.count() == 1:
+        city = City.objects.get(timezone=timezone)
+    else:
+        city_ids = []
+        for city in cities:
+            city_ids.append(city.id)
+        total_cities = len(city_ids)
+        city_id = city_ids[randrange(total_cities)]
+    city = City.objects.get(id=city_id)
+    # city = find a way to pick the city 
     local_now = get_local_now(timezone)
     str_local_now = local_now.strftime('%I:%M:%S %p')
     '''
