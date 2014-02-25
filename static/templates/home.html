@@ -49,7 +49,8 @@
         
         <br>
         <div id="results">
-            <ul style="list-style: none;">
+            <h1>Bars with Deals</h1>
+            <ul>
                 {% for business, values in businesses.items %}
                 <li style="margin-bottom: 10px;">
                 <h2>
@@ -62,17 +63,46 @@
                 {% elif forloop.counter = 3 %}
                     Deal: {{ value }}
                 {% else %}
-                    {{ value }}
+                    {{ value }}<br><a target="_" href="https://maps.google.com/maps?ie=UTF-8&gl=us&daddr={{ value }}&f=d&fb=1&dirflg=d">Map</a>
                 {% endif %}
                 <br>
                 {% endif %}
                 {% endfor %}
-                {% endfor %}
                 </li>
+                {% endfor %}
                 {% if no_results == True %}
                 <li>I'm sorry, no deals in that city.</li>
                 {% endif %}
             </ul>
+            
+            <br>
+                        <h1>Bars without Deals</h1>
+            <ul>
+                {% for business, values in no_deal_businesses.items %}
+                <li style="margin-bottom: 10px;">
+                <h2>
+                    <a href="{% for value in values %}{% if forloop.counter == 1 %}{{ value }}{% endif %}{% endfor %}">{{ business }}</a>
+                </h2>
+                {% for value in values %}
+                {% if forloop.counter > 1 %}
+                {% if forloop.counter = 2 %}
+                    <img src="{{ value }}" />
+                {% elif forloop.counter = 3 %}
+                    Deal: {{ value }}
+                {% else %}
+                    {{ value }}<br><a target="_" href="https://maps.google.com/maps?ie=UTF-8&gl=us&daddr={{ value }}&f=d&fb=1&dirflg=d">Map</a>
+                {% endif %}
+                <br>
+                {% endif %}
+                {% endfor %}
+                </li>
+                {% endfor %}
+            </ul>
+            
+            
+        </div>
+        <div id="no-deal-results" style="display: inline">
+
         </div>
 
             </ul>

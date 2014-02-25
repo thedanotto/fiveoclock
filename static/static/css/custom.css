@@ -5,11 +5,17 @@
   src: local('Lobster'), url(http://themes.googleusercontent.com/static/fonts/lobster/v6/NIaFDq6p6eLpSvtV2DTNDQLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
 }
 
+ul {
+  list-style: none;
+}
 
+#results h1{
+  color: #000080;
+}
 
 #page-wrap {
     font-family: Lobster;
-    width: 250px;
+    width: 350px;
     margin: 50px auto;
     padding: 20px;
     background: white;
