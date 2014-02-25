@@ -4,9 +4,13 @@ import oauth2
 import urllib2
 import json
 
+from functions import find_zip_lat_lng, point_distance_calculator
+
 # Fill in these values
 
 def yelp_values(full_url):
+#    zip_code = '53213'
+#    zip_lat, zip_lng = find_zip_lat_lng(zip_code)
     obj = urllib2.urlopen(full_url)
     
     data = json.load(obj)
@@ -37,6 +41,7 @@ def yelp_values(full_url):
             locations.append([biz_name, deal])
         rating_img_url = business['rating_img_url_small']
         address = business['location']['display_address'][0] + ", " + business['location']['city'] + ", " + business['location']['state_code']
+
         businesses[biz_name] = [url, rating_img_url, deal, address]
     
 
@@ -65,3 +70,56 @@ def yelp_request_url(zip_code):
     
     signed_url = oauth_request.to_url()
     return signed_url
+
+def yelp_request_url_no_deals(zip_code):
+    from yelp_secrets import consumer_key, consumer_secret, token, token_secret
+    consumer_key = consumer_key
+    consumer_secret = consumer_secret
+    token = token
+    token_secret = token_secret
+    
+    consumer = oauth2.Consumer(consumer_key, consumer_secret)
+    url = 'http://api.yelp.com/v2/search?term=bars&location=' + zip_code
+    
+    oauth_request = oauth2.Request('GET', url, {})
+    oauth_request.update({'oauth_nonce': oauth2.generate_nonce(),
+                          'oauth_timestamp': oauth2.generate_timestamp(),
+                          'oauth_token': token,
+                          'oauth_consumer_key': consumer_key})
+    
+    token = oauth2.Token(token, token_secret)
+    
+    oauth_request.sign_request(oauth2.SignatureMethod_HMAC_SHA1(), consumer, token)
+    
+    signed_url = oauth_request.to_url()
+    return signed_url
+
+
+
+
+
+def yelp_values_no_deals(full_url):
+#    zip_code = '53213'
+#    zip_lat, zip_lng = find_zip_lat_lng(zip_code)
+    obj = urllib2.urlopen(full_url)
+    
+    data = json.load(obj)
+    businesses = {}
+    locations = []
+#            locations.append([abc['name'], abc['id']])
+    for business in data['businesses']:
+        
+        biz_name = business['name']
+        deal = 'No Deal Here!'
+            
+        try:
+            url = business['url']
+        except:
+            pass
+        locations.append([biz_name, deal])
+        rating_img_url = business['rating_img_url_small']
+        address = business['location']['display_address'][0] + ", " + business['location']['city'] + ", " + business['location']['state_code']
+        businesses[biz_name] = [url, rating_img_url, deal, address]
+#        biz_lat, biz_lng = find_zip_lat_lng(address)
+#        print point_distance_calculator(biz_lat, biz_lng, zip_lat, zip_lng)
+    return businesses

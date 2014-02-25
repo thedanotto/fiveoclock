@@ -2,6 +2,7 @@ from datetime import datetime
 import pytz
 from pytz import timezone
 from geopy import geocoders
+import math
 
 from models import Timezone
 
@@ -33,7 +34,7 @@ def utc_to_local(utc_date_time, local_timezone):
     local_date_time = utc_date_time.astimezone(local_timezone)
     return local_date_time
 
-def find_city_zip(zip_code):
+def find_zip_lat_lng(zip_code):
     g = geocoders.GoogleV3()
     place, (lat, lng) = g.geocode(zip_code)
     full_address = place.split(', ')

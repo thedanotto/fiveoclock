@@ -7,9 +7,9 @@ import pytz
 from pytz import timezone
 
 
-from functions import current_5oclock_timezone, get_local_now, get_utc_now, find_city_zip, point_distance_calculator
+from functions import current_5oclock_timezone, get_local_now, get_utc_now, find_zip_lat_lng, point_distance_calculator
 from models import City, CityPicture, Timezone
-from yelp import yelp_request_url, yelp_values
+from yelp import yelp_request_url, yelp_values, yelp_request_url_no_deals, yelp_values_no_deals
 
 def home(request):
     five_oclock_tz = current_5oclock_timezone()
@@ -41,6 +41,7 @@ def home(request):
         zip_code = request.POST.get('zip_code')
 
         full_url = yelp_request_url(zip_code)
+        no_deal_full_url = yelp_request_url_no_deals(zip_code)
         try:
             businesses = yelp_values(full_url)
             if len(businesses) == 0:
@@ -51,7 +52,7 @@ def home(request):
         except:
             no_results = True
         
-        
+        no_deal_businesses = yelp_values_no_deals(no_deal_full_url)
         
 
     
